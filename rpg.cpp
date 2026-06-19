@@ -17,16 +17,16 @@ public:
         mpCost = mp;
     }
 
-    // 使用技能的邏輯
+    // 使用技能的邏輯 (修改為暗黑風格的文字)
     void use() {
-        cout << "▶ 施放了專屬技能【" << name << "】！" << endl;
+        cout << "☠️ 你吟唱了古老的祈禱，施展出【" << name << "】！" << endl;
     }
 
-    // 顯示技能資訊的邏輯
+    // 顯示技能資訊的邏輯 (修改為暗黑風格的排版與圖示)
     void showInfo() {
-        cout << "✨ 技能: " << name 
-             << " | ⚔️ 傷害: " << damage 
-             << " | 💧 消耗 MP: " << mpCost << endl;
+        cout << "📜 祈禱/戰技: " << name 
+             << " | ⚔️ 殺傷: " << damage 
+             << " | 🩸 燃燒理智 (MP): " << mpCost << endl;
     }
 
     // 取得技能傷害，要傳給 Player 拿去扣怪物的血
