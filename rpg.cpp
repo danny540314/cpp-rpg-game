@@ -77,10 +77,6 @@ public:
         std::cout << "💥 " << name << " 受到了 " << damage << " 點傷害！";
         std::cout << " (剩餘 HP: " << hp << "/" << maxHp << ")\n";
 
-        
-        std::cout << "💥 " << name << " 受到了 " << damage << " 點傷害！";
-        std::cout << " (剩餘 HP: " << hp << "/" << maxHp << ")\n";
-        
         if (!isAlive()) {
             std::cout << "💀 " << name << " 被擊敗了！\n";
             std::cout << "💰 掉落了 " << rewardGold << " 枚金幣！\n";
@@ -160,18 +156,7 @@ public:
         case ItemType::BUFF_ATK:
             std::cout << "永久提升 " << effectValue << " 點攻擊力";
             break;
-        
-        switch (type) {
-            case ItemType::HEAL_HP:
-                std::cout << "恢復 " << effectValue << " 點 HP";
-                break;
-            case ItemType::HEAL_MP:
-                std::cout << "恢復 " << effectValue << " 點 MP";
-                break;
-            case ItemType::BUFF_ATK:
-                std::cout << "永久提升 " << effectValue << " 點攻擊力";
-                break;
-        }
+
         std::cout << std::endl;
     }
 
@@ -546,14 +531,3 @@ int main() {
     }
     return 0;
 }
-        } else {
-            cout << name << " 數量不足，無法使用！" << std::endl;
-            return 0; 
-        }
-    }
-
-
-    ItemType getType() const { return type; }
-    string getName() const { return name; }
-};
-//-----Item Class finish-----
