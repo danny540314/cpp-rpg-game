@@ -127,16 +127,6 @@ public:
     Item(std::string n, ItemType t, int effect, int q)
         : name(n), type(t), effectValue(effect), quantity(q) {
     }
-private: 
-    string name;       
-    ItemType type;          
-    int effectValue;        
-    int quantity;           
-
-public:
-    Item(std::string n, ItemType t, int effect, int q) 
-        : name(n), type(t), effectValue(effect), quantity(q) {}
-
 
     bool isAvailable() const {
         return quantity > 0;
