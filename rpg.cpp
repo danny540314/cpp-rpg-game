@@ -109,3 +109,61 @@ public:
     void setRewardGold(int rewardGold) { this->rewardGold = rewardGold; }
 };
 // ==================== Monster Class 結束 ====================
+//------Item Class start-----
+enum class ItemType {
+    HEAL_HP, // (對應：枯血藥劑)
+    HEAL_MP, // (對應：餘燼結晶)
+    BUFF_ATK // (對應：狂人骨灰)
+};
+
+class Item {
+private: 
+    string name;       
+    ItemType type;          
+    int effectValue;        
+    int quantity;           
+
+public:
+    Item(std::string n, ItemType t, int effect, int q) 
+        : name(n), type(t), effectValue(effect), quantity(q) {}
+
+
+    bool isAvailable() const {
+        return quantity > 0;
+    }
+
+    void showInfo() const {
+        std::cout << "【" << name << "】 ";
+        std::cout << "剩餘數量: " << quantity << " | 效果: ";
+        
+        switch (type) {
+            case ItemType::HEAL_HP:
+                std::cout << "恢復 " << effectValue << " 點 HP";
+                break;
+            case ItemType::HEAL_MP:
+                std::cout << "恢復 " << effectValue << " 點 MP";
+                break;
+            case ItemType::BUFF_ATK:
+                std::cout << "永久提升 " << effectValue << " 點攻擊力";
+                break;
+        }
+        std::cout << std::endl;
+    }
+
+
+    int use() {
+        if (isAvailable()) {
+            quantity--;
+            cout << "使用了 [" << name << "]！" << std::endl;
+            return effectValue;
+        } else {
+            cout << name << " 數量不足，無法使用！" << std::endl;
+            return 0; 
+        }
+    }
+
+
+    ItemType getType() const { return type; }
+    string getName() const { return name; }
+};
+//-----Item Class finish-----
