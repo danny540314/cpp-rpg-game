@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include<vector>
+#include <cstdlib>  // 為了使用 system 函數
 using namespace std;
 
 class Skill {
@@ -481,6 +482,8 @@ void visitMerchant(Player& player) {
     }
 }
 int main() {
+    // 強制把 Windows 終端機切換為 UTF-8 編碼
+    system("chcp 65001>nul");
     //player
     Player player("見習守墓人", 100, 50, 15);
     //skill
