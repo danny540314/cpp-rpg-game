@@ -87,13 +87,13 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/8ed4c4ee-7cf5-4757-a154-d2a3f3323f97" width="600" alt="成功啟動遊戲" />
   <br>
-  <b>圖 1：成功啟動遊戲 (ASCII 標題)</b>
+  <b>圖 1 成功啟動遊戲 (ASCII 標題)</b>
 </p>
 
 ---
 
 ### 2. 戰鬥系統與技能展示
-| 圖 2-1：戰鬥選單 | 圖 2-2：觸發爆擊 | 圖 2-3：使用技能 (戰技) |
+| 圖 2-1 戰鬥選單 | 圖 2-2 觸發爆擊 | 圖 2-3 使用技能 (戰技) |
 | :---: | :---: | :---: |
 | <img src="https://github.com/user-attachments/assets/c18a317d-4a7d-4524-8117-55ef80150e8c" width="300" alt="戰鬥選單" /> | <img src="https://github.com/user-attachments/assets/a60dba4e-84c8-4ddd-847f-2bcc049a4e5f" width="300" alt="觸發爆擊" /> | <img src="https://github.com/user-attachments/assets/daef2dc3-273a-40da-9bd0-1541a8093fec" width="300" alt="使用技能" /> |
 
@@ -103,13 +103,13 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/e85782e3-ab9b-4073-af07-4d98d34d5016" width="500" alt="營火商人選單" />
   <br>
-  <b>圖 3：營火商人選單與交易畫面</b>
+  <b>圖 3 營火商人選單與交易畫面</b>
 </p>
 
 ---
 
 ### 4. 多重結局系統
-| 圖 4-1：破關真結局 | 圖 4-2：破關隱藏結局 | 圖 4-3：失敗結局 |
+| 圖 4-1 破關真結局 | 圖 4-2 破關隱藏結局 | 圖 4-3 失敗結局 |
 | :---: | :---: | :---: |
 | <img src="https://github.com/user-attachments/assets/34c2c891-c0cd-456e-a689-e1ed714e8879" width="300" alt="破關真結局" /> | <img src="https://github.com/user-attachments/assets/089c5ecb-ff7e-4d76-8d3d-0bf755a180c2" width="300" alt="破關隱藏結局" /> | <img src="https://github.com/user-attachments/assets/c23d9c1c-dd83-4b94-b743-2a841500fa85" width="300" alt="失敗結局" /> |
 
