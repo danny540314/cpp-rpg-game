@@ -146,7 +146,7 @@ public:
         case ItemType::BUFF_ATK:
             std::cout << "永久提升 " << effectValue << " 點攻擊力";
             break;
-
+        }
         std::cout << std::endl;
     }
 
