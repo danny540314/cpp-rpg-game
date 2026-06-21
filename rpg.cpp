@@ -1,7 +1,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <cstdlib> // 用於 system() 函數
+#include <cstdlib>  // 用於 system() 函數
+#include <ctime>    // 用於產生隨機亂數(爆擊)
+#include <limits>   // 用於 cin 防呆機制
+
 using namespace std;
 
 // ==================== Skill Class 開始 ====================
@@ -164,8 +167,16 @@ public:
     }
 
     void attack(Monster& m) {
+        int finalDamage = attackPower;
         cout << "\n🗡️ 【" << name << "】 揮舞武器，向 " << m.getName() << " 發動攻擊！\n";
-        m.takeDamage(attackPower);
+        
+        // 🌟 20% 機率觸發爆擊
+        if (rand() % 100 < 20) { 
+            finalDamage = finalDamage * 1.5;
+            cout << "   🌟 擊中要害！造成了致命的爆擊傷害！\n";
+        }
+        
+        m.takeDamage(finalDamage);
     }
 
     void useSkill(int index, Monster& m) {
@@ -192,7 +203,7 @@ public:
         Item& selectedItem = items[index];
         if (selectedItem.isAvailable()) {
             int effect = selectedItem.use();
-            if (effect == 0) return; // 沒用到(數量不足)就不執行後續效果
+            if (effect == 0) return;
 
             switch (selectedItem.getType()) {
                 case ItemType::HEAL_HP:
@@ -278,12 +289,12 @@ public:
 
 // 戰鬥迴圈
 void startCombat(Player& player, Monster& monster) {
-    system("cls"); // 清空畫面
+    system("cls");
     cout << "\n⚠️ 遭遇了【" << monster.getName() << "】！\n";
     system("pause");
 
     while (player.isAlive() && monster.isAlive()) {
-        system("cls"); // 每個回合開始前清空畫面，保持介面乾淨
+        system("cls");
         player.showStatus();
         monster.showInfo();
 
@@ -295,9 +306,15 @@ void startCombat(Player& player, Monster& monster) {
         cout << "請選擇你的行動 (輸入數字): ";
 
         int choice;
-        cin >> choice;
+        // 🌟 終極防呆機制：防止輸入英文字母導致無限迴圈
+        if (!(cin >> choice)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "\n❌ 輸入錯誤！慌亂之中你浪費了一回合！\n";
+            system("pause");
+            continue;
+        }
 
-        // 玩家行動
         if (choice == 1) {
             player.attack(monster);
         }
@@ -305,29 +322,31 @@ void startCombat(Player& player, Monster& monster) {
             player.showSkills();
             cout << "請選擇要施展的技能 (輸入 0 取消): ";
             int skillChoice;
-            cin >> skillChoice;
-            if (skillChoice > 0) {
-                player.useSkill(skillChoice - 1, monster);
-            } else {
-                continue; // 取消則重新選擇
+            if (!(cin >> skillChoice)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
             }
+            if (skillChoice > 0) player.useSkill(skillChoice - 1, monster);
+            else continue;
         }
         else if (choice == 3) {
             player.showItems();
             cout << "請選擇要使用的物品 (輸入 0 取消): ";
             int itemChoice;
-            cin >> itemChoice;
-            if (itemChoice > 0) {
-                player.useItem(itemChoice - 1);
-            } else {
-                continue; // 取消則重新選擇
+            if (!(cin >> itemChoice)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
             }
+            if (itemChoice > 0) player.useItem(itemChoice - 1);
+            else continue;
         }
         else {
             cout << "\n❌ 無效的選擇，慌亂之中你浪費了一回合！\n";
         }
 
-        // 怪物行動 (如果怪物還活著)
+        // 怪物行動
         if (monster.isAlive()) {
             cout << "\n================ 敵方回合 ================\n";
             monster.attack();
@@ -335,7 +354,7 @@ void startCombat(Player& player, Monster& monster) {
         }
 
         cout << "\n";
-        system("pause"); // 暫停，讓玩家看清楚戰鬥結果
+        system("pause");
     }
 
     // 戰鬥結算
@@ -374,7 +393,14 @@ void visitMerchant(Player& player) {
         cout << "請選擇你要進行的交易: ";
 
         int choice;
-        cin >> choice;
+        // 🌟 營火選單防呆
+        if (!(cin >> choice)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "\n❌ 商人疑惑地看著你... (請輸入數字)\n";
+            system("pause");
+            continue;
+        }
 
         if (choice == 1) {
             if (player.spendGold(15)) {
@@ -430,6 +456,9 @@ int main() {
     // 解決 Windows CMD 亂碼問題
     system("chcp 65001>nul"); 
     system("cls");
+    
+    // 🌟 初始化亂數種子 (為了爆擊系統)
+    srand(time(0)); 
 
     // 印出遊戲標題
     cout << "====================================================\n";
@@ -443,7 +472,7 @@ int main() {
     cout << "  [ 在這個終年不見天日的村莊，你是最後的希望... ]\n\n";
     system("pause");
 
-    // 初始化玩家 (強化版：120 HP, 60 MP, 18 ATK)
+    // 初始化玩家 (120 HP, 60 MP, 18 ATK)
     Player player("見習守墓人", 120, 60, 18);
     
     // 初始化技能
@@ -452,7 +481,7 @@ int main() {
     player.addSkill(shadowStrike);
     player.addSkill(requiem);
     
-    // 初始化道具 (強化版補血量)
+    // 初始化道具
     Item hpPotion("枯血藥劑", ItemType::HEAL_HP, 50, 3);
     Item mpPotion("餘燼結晶", ItemType::HEAL_MP, 30, 2);
     Item atkBuff("狂人骨灰", ItemType::BUFF_ATK, 5, 1);
@@ -460,7 +489,7 @@ int main() {
     player.addItem(mpPotion);
     player.addItem(atkBuff);
     
-    // 初始化怪物 (難度調整)
+    // 初始化怪物
     Monster zombie("腐朽活屍", 30, 5, 25);
     Monster gargoyle("黑棘石像鬼", 60, 12, 50);
     Monster boss("深淵領主", 150, 18, 500);
@@ -492,14 +521,14 @@ int main() {
         startCombat(player, boss);
     }
     
-    // 結局
+    // 結局結算
     if (player.isAlive()) {
         system("cls");
         cout << "\n====================================================\n";
         cout << "🎉 恭喜通關！\n\n";
         cout << "隨著深淵領主的倒下，一縷純粹的初火重新燃起。\n";
         
-        // 判斷是否觸發「貪婪勇者」隱藏結局 (持有金幣超過 1000)
+        // 🌟 判斷是否觸發「貪婪勇者」隱藏結局
         if (player.getGold() >= 1000) {
             cout << "然而...\n";
             cout << "你滿身是血地拖著一大袋不義之財回到村莊。\n";
