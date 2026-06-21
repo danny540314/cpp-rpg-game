@@ -83,18 +83,16 @@
 
 ## 📸 遊戲畫面截圖
 
-*
 1.遊戲開始的ASCII標題畫面
 <img width="578" height="310" alt="圖片1" src="https://github.com/user-attachments/assets/8ed4c4ee-7cf5-4757-a154-d2a3f3323f97" />
 圖1 成功啟動遊戲
 
 2.戰鬥選單與觸發爆擊/技能的畫面
 <img width="408" height="398" alt="圖片1" src="https://github.com/user-attachments/assets/c18a317d-4a7d-4524-8117-55ef80150e8c" />
-
 圖2-1 戰鬥選單
- 
+<img width="510" height="576" alt="圖片1" src="https://github.com/user-attachments/assets/a60dba4e-84c8-4ddd-847f-2bcc049a4e5f" />
 圖2-2 觸發爆擊
- 
+
 圖2-3 使用技能(戰技)
 
 3.	營火商人選單畫面
